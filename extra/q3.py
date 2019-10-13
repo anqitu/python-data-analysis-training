@@ -18,10 +18,6 @@
 # Then, the output should be:
 # balance: 500
 
-def is_valid_transaction(transaction):
-    t = transaction.split()
-    return len(t) == 2 and t[0] in ["D", "W"] and t[1].isdigit()
-
 if __name__ == "__main__":
 
     balance = 0
@@ -32,15 +28,15 @@ if __name__ == "__main__":
         if (transaction == "exit"):
             break
 
-        if not is_valid_transaction(transaction):
+        t = transaction.split()
+        # type = t_split[0]
+        # amount = t_split[1]
+        type, amount = t
+
+        if not (len(t) == 2 and type in ["D", "W"] and amount.isdigit()):
             print("Invalid log, try again")
             continue
 
-        # t_split = transaction.split()
-        # type = t_split[0]
-        # amount = t_split[1]
-
-        type, amount = transaction.split()
         amount = float(amount)
 
         if (type == "D"):

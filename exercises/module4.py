@@ -1,5 +1,5 @@
 # Python Essential Training
-# Module 3: Control Structures
+# Module 4: Control Structures
 # Author: Dr. Alfred Ang
 # Update: 19 Jan 2017
 
@@ -18,17 +18,34 @@
 # print(discount)
 
 # Exercise
-# grade = input('What is your grade')
-# grade = grade.upper()
+# balance = 0
+# while (True):
+#     transaction = input("Enter transaction log > ");
+#
+#     # guard clause
+#     if (transaction == "exit"):
+#         break
+#
+#     t = transaction.split()
+#     # type = t_split[0]
+#     # amount = t_split[1]
+#     type, amount = t
+#
+#     if not (len(t) == 2 and type in ["D", "W"] and amount.isdigit()):
+#         print("Invalid log, try again")
+#         continue
+#
+#     amount = float(amount)
+#
+#     if (type == "D"):
+#         balance += amount
+#     elif (type == "W"):
+#         balance -= amount
+#
+#     # balance += amount * (-1 if type == "W" else 1)
+#
+# print("balance: {}".format(balance))
 
-# if (grade == 'A'):
-# 	print("Excellent")
-# elif (grade == "B"):
-# 	print("Well Done!")
-# elif (grade == 'C'):
-# 	print("Work Harder")
-# else:
-# 	print("I don't know your grade")
 
 
 # Loop

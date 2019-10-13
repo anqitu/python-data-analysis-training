@@ -66,6 +66,7 @@ class Counter:
 
     def reset(self):
         self.count = 0
+
 counter = Counter()
 counter.count
 counter.increment_1()
@@ -115,70 +116,73 @@ sqaure.area()
 
 
 
-class Employee():
+class Account():
 
-	empCount = 0
+    acc_count = 0
 
-	def __init__(self,name,salary):
-		self.name = name
-		self.salary = salary
-		Employee.empCount += 1
+    def __init__(self, number, balance):
+        self.number = number
+        self.balance = balance
+        Account.acc_count += 1
 
-	def __del__(self):
-		Employee.empCount -= 1
+    def __del__(self):
+        Account.acc_count -= 1
 
-	def disp_empCount():
-		print("Employee Count = {}".format(Employee.empCount))
+    def withdraw(self, amount):
+        self.balance -= amount
 
-	def disp_empDetails(self):
-		print("{} salary is {}".format(self.name, self.salary))
+    def deposit(self, amount):
+        self.balance += amount
 
-emp1 = Employee('A', 4000)
-Employee.empCount
-Employee.disp_empCount()
-emp1.disp_empDetails()
+    def disp_total_accounts():
+        print("Total accounts: {}".format(Account.acc_count))
 
-emp2 = Employee('B', 3000)
-Employee.disp_empCount()
-Employee.empCount
-del emp2
-Employee.disp_empCount()
-Employee.empCount
+    def disp_acc_details(self):
+        print("Account Number: {}\nBalance: {}".format(self.number, self.balance))
 
+acc1 = Account('001', 4000)
+Account.acc_count
+Account.disp_total_accounts()
+acc1.disp_acc_details()
 
+acc2 = Account('002', 4000)
+Account.disp_total_accounts()
+del acc1
+Account.disp_total_accounts()
 
-class FullTimeStaff(Employee):
+class SavingsAccount(Account):
 
-	def __init__(self,name,salary,leave):
-		super().__init__(name,salary)
-		self.leave = leave
+	def __init__(self, number, balance, interest):
+		super().__init__(number, balance)
+		self.interest = interest
 
-	def disp_EmpDetail(self):
-		print("{} salary is ${} and leave is {}days".format(self.name,self.salary,self.leave))
+	def disp_acc_details(self):
+		super().disp_acc_details()
+        print("Interest: {}".format(self.interest))
 
-class PartTimeStaff(Employee):
+    def withdraw(self):
+        pass
 
-	def __init__(self,name,hrrate):
-		super().__init__(name,0)
-		self.hrrate = hrrate
-		Employee.empCount -=  1
+class CheckingAccount(Account):
 
-	def __del__(self):
-		pass
+    TRANSACTION_FEE = 0.5
 
-	def disp_EmpDetail(self):
-		print("{} hourly rate is ${} per hour".format(self.name,self.hrate))
+	def withdraw(self, amount):
+        super().withdraw(amount)
+        self.balance -= CheckingAccount.TRANSACTION_FEE
 
-# Testing
-ally = FullTimeStaff("Ally",4000,21)
-belinda = FullTimeStaff("Belinda",4000,21)
-jane = PartTimeStaff("Jane",200)
-steve = PartTimeStaff("Steve",200)
-Employee.disp_empCount()
-del belinda
-del steve
-Employee.disp_empCount()
+    def deposit(self, amount):
+        super().deposit(amount)
+        self.balance -= CheckingAccount.TRANSACTION_FEE
 
+class TemporaryAccount(Account):
+
+    def __init__(self, number, balance):
+		super().__init__(number, balance)
+		Account.acc_count -= 1
+
+    def __del__(self):
+        pass
 
 # Polymerism
 class Animal():
