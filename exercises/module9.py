@@ -36,10 +36,11 @@ sns.relplot(x="Annual Income (k$)", y="Spending Score (1-100)", hue="Genre", siz
 
 """One Categorical Variables - Bar/Pie"""
 sns.catplot(x = 'Genre', kind ='count', data = df)
-
-"""Two Categorical variables - Side-by-side Bar/StackedBar"""
 bins = pd.IntervalIndex.from_tuples([(15, 24), (25, 34), (35, 44), (45, 54), (55, 64), (65, 74)])
 df['Age (bin)'] = pd.cut(df['Age'], bins)
+sns.catplot(x = 'Age (bin)', kind ='count', data = df)
+
+"""Two Categorical variables - Side-by-side Bar/StackedBar"""
 df[['Age', 'Age (bin)']]
 sns.catplot(x = 'Age (bin)', kind ='count', hue = 'Genre',data = df)
 
